@@ -59,7 +59,7 @@ void mergeSort(int *data, int n) {
 }
 
 int main(void) {
-    int i, j, n, sum, ans, pow, cnt;  // 1 <= n <= 30
+    int i, j, k, n, sum, ans, pow, cnt;  // 1 <= n <= 30
     int weights[30];
 
     cnt = 0;
@@ -87,13 +87,15 @@ int main(void) {
     for (i=0; i<n; i++) pow *= 2;
 
     // find answer
-    for (i=0; i<pow; i++) {
-        sum = 0;
-        for (j=0; j<n; j++) {
-            sum += (weights[j] * getBinaryPosition(i, n-1-j));
+    for (i=1; i<pow-1; i*=2) {
+        for (j=i; j<i*2; j++) {
+            sum = 0;
+            for (k=0; k<n; k++) {
+                sum += (weights[k] * getBinaryPosition(j, n-1-k));
+            }
             if (sum > ans) break;
+            else if (sum == ans) cnt++;
         }
-        if (sum == ans) cnt++;
     }
     printf("%d\n", cnt);
     
