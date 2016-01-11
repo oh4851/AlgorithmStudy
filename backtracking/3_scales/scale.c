@@ -71,11 +71,7 @@ int main(void) {
         scanf("%d", &weights[i]);
         sum += weights[i];
     }
-    if (sum > WEIGHT_LIMIT) {
-        printf("impossible\n");
-        return 0;
-    }
-    if (sum % 2 != 0) {
+    if ((sum > WEIGHT_LIMIT) || (sum % 2 != 0)) {
         printf("impossible\n");
         return 0;
     }
