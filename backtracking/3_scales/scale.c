@@ -22,7 +22,14 @@ int main(void) {
         scanf("%d", &weights[i]);
         sum += weights[i];
     }
-    if (sum > WEIGHT_LIMIT) return 0;
+    if (sum > WEIGHT_LIMIT) {
+        printf("impossible\n");
+        return 0;
+    }
+    if (sum % 2 != 0) {
+        printf("impossible\n");
+        return 0;
+    }
 
     // get half of sum
     ans = sum / 2;
@@ -36,6 +43,7 @@ int main(void) {
         sum = 0;
         for (j=0; j<n; j++) {
             sum += (weights[j] * getBinaryPosition(i, n-1-j));
+            if (sum > ans) break;
         }
         if (sum == ans) cnt++;
     }
