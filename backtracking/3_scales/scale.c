@@ -1,38 +1,40 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 #define WEIGHT_LIMIT 300
 
-int getBinaryPosition(int value, int position) {
-    int i;
-    for (i=0; i<position; i++) {
-        value = value >> 1;
-    }
-    return value & 0x00000001;}
+typedef struct nd {
+    int sum;
+    int count;
+    nd *pt;
+} node;
+
+void push(int sum, int count) {
+}
+
+node pop() {
+}
 
 int main(void) {
-    int i, j, n, sum, ans, pow, cnt;  // 1 <= n <= 30
+    int i, j, n, sum, ans, cnt;  // 1 <= n <= 30
     int weights[30];
 
     cnt = 0;
-    sum = 0;
+    ans = 0;
 
     // data input
     scanf("%d", &n);
     for (i=0; i<n; i++) {
         scanf("%d", &weights[i]);
-        sum += weights[i];
+        ans += weights[i];
     }
-    if (sum > WEIGHT_LIMIT) {
-        printf("impossible\n");
-        return 0;
-    }
-    if (sum % 2 != 0) {
+    if ((ans > WEIGHT_LIMIT) || (ans % 2 != 0)) {
         printf("impossible\n");
         return 0;
     }
 
     // get half of sum
-    ans = sum / 2;
+    ans = ans >> 1;
 
     // get power of weights length
     pow = 1;
@@ -42,7 +44,7 @@ int main(void) {
     for (i=0; i<pow; i++) {
         sum = 0;
         for (j=0; j<n; j++) {
-            sum += (weights[j] * getBinaryPosition(i, n-1-j));
+            if (getBinaryPosition(i, n-1-j)) sum += weights[j];
             if (sum > ans) break;
         }
         if (sum == ans) cnt++;
