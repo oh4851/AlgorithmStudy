@@ -11,5 +11,6 @@ __DOING__
  - scales (양팔 저울) - solve:recurisve, not solve:bin mapping
  - beeper - not solve
  - door - solve:recursive
+ - nqueen - solve:recursive
 
 __DONE__
