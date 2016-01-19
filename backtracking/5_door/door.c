@@ -39,4 +39,6 @@ int main(void) {
     ans = 999999;
     findMinMove(&ans, 0, 0, lopen, ropen);
     printf("%d\n", ans);
+
+    return 0;
 }
